@@ -7,10 +7,11 @@
 #include <queue>
 #include "http_client.h"
 #include "url_parser.h"
+#include "indexer.h"
 
 class Crawler {
 public:
-    void run(const std::string& seed_url, int max_pages);
+    void run(const std::string& seed_url, int max_pages, Indexer& indexer);
 
 private:
     std::set<std::string> visited;

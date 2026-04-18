@@ -1,7 +1,7 @@
 #include "crawler.h"
 #include <iostream>
 
-void Crawler::run(const std::string& seed_url, int max_pages) {
+void Crawler::run(const std::string& seed_url, int max_pages, Indexer& indexer) {
     to_visit.push(seed_url);
     int pages_crawled = 0;
 
@@ -23,6 +23,8 @@ void Crawler::run(const std::string& seed_url, int max_pages) {
             std::cout << "  Failed to fetch content." << std::endl;
             continue;
         }
+
+	indexer.addPage(current_url, html);
 
         extractLinks(html, pUrl.host);
 
